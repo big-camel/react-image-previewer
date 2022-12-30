@@ -1,5 +1,15 @@
 # react-image-previewer
 
+## 1.1.0
+
+### Minor Changes
+
+- [`14d72bd`](https://github.com/big-camel/react-image-previewer/commit/14d72bd8a9ba389a62aee5c9f56ec08dfc515feb) Thanks [@big-camel](https://github.com/big-camel)! - - Separate toolbar and UI components
+  - Add `ref` reference to the root node
+  - Fix the wrong number of rendered pictures
+  - Fix initial `scale` not correct
+  - Optimize animation effects
+
 ## 1.0.0
 
 ### Major Changes
