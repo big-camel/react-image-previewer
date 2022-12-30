@@ -1,0 +1,568 @@
+---
+title: Getting Started
+---
+
+import {Callout} from 'nextra-theme-docs';
+
+import DocBasic from '../../components/doc-basic';
+import DocMotion from '../../components/doc-motion';
+import DocCover from '../../components/doc-cover';
+import DocToolbar from '../../components/doc-toolbar';
+import DocRead from '../../components/doc-read';
+import DocButton from '../../components/doc-button';
+import DocLoop from '../../components/doc-loop';
+import DocDrag from '../../components/doc-drag';
+import DocBackdrop from '../../components/doc-backdrop';
+import DocClose from '../../components/doc-close';
+import DocBroken from '../../components/doc-broken';
+import DocControlled from '../../components/doc-controlled';
+import DocPart from '../../components/doc-part';
+import DocOverlay from '../../components/doc-overlay';
+import DocRender from '../../components/doc-render';
+import DocWheel from '../../components/doc-wheel';
+import DocIcons from '../../components/doc-icons'
+import DocSlide from '../../components/doc-slide'
+import DocCloseUI from '../../components/doc-close-ui'
+
+## Install
+
+Run the following commands in the `React` project directory:
+
+pnpm:
+
+```bash
+pnpm i react-image-previewer
+```
+
+yarn:
+
+```bash
+yarn add react-image-previewer
+```
+
+or with npm:
+
+```bash
+npm install react-image-previewer
+```
+
+## Quick start
+
+Introduce `PhotoProvider` and `PhotoView` components where they need to be used, basic usage:
+
+```jsx
+import { PhotoProvider, PhotoView } from 'react-image-previewer';
+
+export default function MyComponent() {
+  return (
+    <PhotoProvider>
+      <div>
+        {images.map((item, index) => (
+          <PhotoView key={index} src={item}>
+            <img src={item} alt="" />
+          </PhotoView>
+        ))}
+      </div>
+    </PhotoProvider>
+  );
+}
+```
+
+With the `PhotoProvider` as the boundary, all the `PhotoView` images in it will be extracted as a set of image preview galleries in the running order. When an `<img >` is clicked, it will locate the specified image and open the preview:
+
+<DocBasic />
+
+If you need the images of the entire page to form a group for preview, you can nest `PhotoProvider` at the entrance of the page.
+
+<Callout emoji="💡">
+  Note: `react-image-previewer` only keeps three images loaded in the `DOM` at a time, since each image is a compositing
+  layer, which consumes quite a bit of memory.
+</Callout>
+## PhotoProvider parameters
+
+### Custom Overlays
+
+Add the `overlayRender` function on `<PhotoProvider />` to implement the rendering of custom nodes and toolbars.
+
+The parameters provided by the `overlayRender` function are:
+
+- `loading` - whether the current preview image is loading `boolean`
+- `mode` - current mode `drag` | `slide`
+- `images` - list of images `DataType[]`
+- `index` - current index `number`
+- `onIndexChange` - index change callback `(index: number) => void`
+- `visible` - Whether to see `boolean`
+- `onClose` - close event callback `() => void`
+- `overlayVisible` - whether the overlay is visible `boolean`
+- `overlay` - image overlay
+- `rotate` - current rotation angle `number`
+- `onRotate` - rotation event callback `(rotate: number) => void`
+- `scale` - the current scale `number`
+- `onScale` - scale event callback `(scale: number) => void`
+
+<DocOverlay />
+
+### Drag and drop mode
+
+By default, the `slide` mode is used, and `mode="drag"` needs to be added to `<PhotoProvider />` to use the drag mode
+
+In the drag mode, you can freely drag pictures in the current preview view, and dragging left and right will no longer automatically switch pictures.
+
+The zoom ratio `scale` will be calculated according to the actual size of the image, the minimum zoom ratio is allowed to `0.1` (10% of the actual image size), and the maximum zoom ratio is `6` times.
+
+<DocDrag />
+
+<Callout emoji="💡">If the device supports touch, the `slide` mode will be forced. </Callout>
+
+### Loop preview
+
+Add parameter `loop` on `<PhotoProvider />` to change the number of loop previews. Set to `boolean` to enable/disable, set to `number` type to enable circular preview when exceeding the specific number, the default value is `3`:
+
+```jsx
+<PhotoProvider loop={4} />
+```
+
+<DocLoop />
+
+### Mask transparency
+
+The default is opaque, and the transparency will gradually decrease during the pull-up process. You can add `maskOpacity` to `<PhotoProvider />` to adjust the default transparency, which can be set to a number between `0-1`:
+
+```jsx
+<PhotoProvider maskOpacity={0.5} />
+```
+
+<DocBackdrop />
+
+### Mask event
+
+Whether `pullClosable` (default `true`) can close the gallery by pulling down, whether `maskClosable` (default `true`) can click the mask to close the gallery:
+
+```jsx
+<PhotoProvider pullClosable={false} maskClosable={false} />
+```
+
+<DocClose />
+
+### Transition effects
+
+`react-image-previewer` uses quite a lot of `CSS3` animations to ensure a smoother experience, and uses spring animations to approximate the native scrolling effect when scrolling. The default duration of `CSS3` animation is `400ms`, using `cubic-bezier(0.25, 0.8, 0.25, 1)` animation function.
+
+You can customize the animation time or function by setting `speed` and `easing`:
+
+```jsx
+<PhotoProvider
+   speed={() => 800}
+   easing={(type) => (type === 2 ? 'cubic-bezier(0.36, 0, 0.66, -0.56)' : 'cubic-bezier(0.34, 1.56, 0.64, 1)')}
+/>
+```
+
+`speed` and `easing` are functions, and the type of the current animation can be judged by the parameter `type`. The values of `type` are:
+
+- `1` - Opening
+- `2` - Closing
+- `3` - toggle `index`
+
+<DocMotion />
+
+<Callout emoji="💡">If the child node is not an `img` node, an additional `opacity` fade effect will be added. </Callout>
+
+### Disable mouse wheel zoom
+
+`PhotoProvider` provides `enableMouseZoom` property to control whether to respond to mouse wheel events. Default `true`
+
+```jsx
+<PhotoProvider enableMouseZoom={false} />
+```
+<DocWheel />
+
+### Custom Feedback
+
+`<PhotoView />` If the loading fails, an empty node is rendered by default, and you probably need to set your own error feedback node according to the current UI.
+
+`PhotoProvider` provides the following properties to customize feedback node rendering:
+
+- `brokenElement` - Sets the failed pattern to load on `React.ReactElement`
+- `loadingElement` - Sets the loading pattern `React.ReactElement`
+
+<DocBroken />
+
+### Root element mount
+
+`PhotoProvider` provides the `portalContainer` property to set the root node of the mount, which is mounted on `document.body` by default
+
+```jsx
+<PhotoProvider portalContainer={document. body} />
+```
+
+### Ref
+
+`PhotoProvider` provides a `ref` attribute to get the `DOM` node of the previewer
+
+```jsx
+const ref = useRef()
+
+<PhotoProvider ref={ref} />
+```
+
+## Crop thumbnail
+
+The `<PhotoView />` component will automatically recognize the child node type. If the child node is `<img />`, and the `object-fit` attribute is set using `CSS`, the zoom animation will have a cropping effect:
+
+```jsx
+<PhotoView src={imageURL}>
+   <img src={imageURL} style={{ objectFit: 'cover' }} alt="" />
+</PhotoView>
+```
+
+<DocCover />
+
+## Zoom in/out
+
+- When `mode` is set to `drag`, the minimum scaling can reach `0.1` (10% of the original size of the image), and `1` is the original size of the image
+
+- When `mode` is `slide`, zoom down to `1` (current view size)
+
+- Maximum zoom up to `6`
+
+Adding a `scale` control implements the zoom in/out buttons:
+
+```jsx
+import { ZoomInIcon, ZoomOutIcon } from 'react-image-previewer/ui'
+<PhotoProvider
+   overlayRender={({ onScale, scale }) => {
+     return (
+       <div style={{zIndex: 9999, position: 'absolute', bottom: '100px', left: '50%'}}>
+         <button onClick={() => onScale(scale + 1)}><ZoomOutIcon /></button>
+         <button onClick={() => onScale(scale - 1)}><ZoomOutIcon /></button>
+       </div>
+     );
+   }}
+/>
+```
+
+## Rotate
+
+`react-image-previewer` does not have a built-in rotation control button by default, but provides a rotation `API`. We simply add an `SVG` image to achieve the rotation effect:
+
+```jsx
+import { RotateLeftIcon, RotateRightIcon } from 'react-image-previewer/ui'
+<PhotoProvider
+   overlayRender={({ rotate, onRotate }) => {
+     return (
+       <div style={{zIndex: 9999, position: 'absolute', bottom: '100px', left: '50%'}}>
+       <button onClick={() => onRotate(rotate + 90)}><RotateLeftIcon /></button>
+       <button onClick={() => onRotate(rotate - 90)}><RotateRightIcon /></button>
+       </div>)
+   }}
+/>
+```
+
+The following example implements a **rotate/fullscreen/zoom in/zoom out** toolbar:
+
+<DocToolbar />
+
+## Long image mode
+
+When a mobile device loads a picture whose aspect ratio exceeds `3` times, it will enter the long picture mode by default. That is, the preview starts at the top of the image, and the image width fills the width of the mobile device:
+
+<DocRead />
+
+## Trigger node
+
+`<PhotoView>` subcomponents can be of regular `React.HTMLAttributes` types, such as `<img />`, `<div />`, etc.
+
+If it is a custom component, you need to ensure that the `onClick` event can be triggered normally, and forward `ref` to `HTMLElement` to ensure the correctness of opening/closing the animation source.
+
+```jsx
+<PhotoView src={imageURL}>
+   <Button primary>Click</Button>
+</PhotoView>
+```
+
+<DocButton />
+
+## `PhotoSlider`
+
+In general, using `<PhotoProvider />` together with `<PhotoView />` has met most of the needs. For more advanced custom controls, `<PhotoSlider />` can be used.
+
+The parameters of `<PhotoSlider />` are inherited from `<PhotoProvider />`. Several additional APIs will be exposed:
+
+- `mode` - current mode `drag` | `slide`
+- `images` image list, `DataType[]`
+- `visible` whether to see the controlled property `boolean`
+- `onClose` close event callback `() => void`
+- `afterClose` callback after closing animation `() => void`
+- `index` the current index controlled property `number`
+- `onIndexChange` index change callback `(index: number) => void`
+
+`visible` and `onClose` are combined to form a controlled, and `index` is combined with `onIndexChange` to form a controlled.
+
+```jsx
+export default function MyComponent() {
+   const [visible, setVisible] = useState(false);
+   const [index, setIndex] = useState(0);
+
+   return (
+     <>
+       <Button onClick={() => setIndex(2)}>setIndex(2)</Button>
+       <Button onClick={() => setIndex(4)}>setIndex(4)</Button>
+       <Bbutton onClick={() => setVisible(true)} primary>
+         Click
+       </Button>
+
+       <PhotoSlider
+         images={images. map((item) => ({ src: item, key: item }))}
+         visible={visible}
+         onClose={() => setVisible(false)}
+         index={index}
+         onIndexChange={setIndex}
+       />
+     </>
+   );
+}
+```
+
+<DocControlled />
+
+## Preview more
+
+`<PhotoView />` can also be added to the preview queue without subcomponents, but it cannot directly trigger the preview of the current image. Through this feature, we can realize the function of previewing more pictures through an entrance:
+
+```jsx
+<PhotoProvider>
+   {images. map((item, index) => (
+     <PhotoView key={index} src={item}>
+       {index < 2 ? <img src={item} alt="" /> : undefined}
+     </PhotoView>
+   ))}
+</PhotoProvider>
+```
+
+<DocPart />
+
+## Custom render node
+
+`<PhotoView />` has built-in support for image preview by default, just pass `src`, and the component will automatically recognize the width and height of the image.
+
+We can also realize the preview of custom nodes through the `render` function to support the needs of `video` or `pdf`.
+
+```jsx
+const elementSize = 400;
+
+function MyComponent() {
+   return (
+     <PhotoView
+       width={elementSize}
+       height={elementSize}
+       render={({ scale, attrs }) => {
+         const width = attrs. style. width;
+         const offset = (width - elementSize) / elementSize;
+         const childScale = scale === 1 ? scale + offset : 1 + offset;
+
+         return (
+           <div {...attrs}>
+             <div style={{ transform: `scale(${childScale})`, width: elementSize, transformOrigin: '0 0' }}>
+               <div>Hello world</div>
+               <Button>button</Button>
+               <input onMouseDown={(e) => e. stopPropagation()} />
+             </div>
+           </div>
+         );
+       }}
+     >
+       <Button primary>Click</Button>
+     </PhotoView>
+   );
+}
+```
+
+<Callout emoji="💡">
+   Note: After the gallery is scaled, it will first be scaled with `scale`, and after the animation ends, it will be adjusted to the width and height corresponding to the current `scale`, and `scale` will be reset to `1`.
+</Callout>
+
+<DocRender />
+
+## UI
+
+### Icon
+
+`react-image-previewer/ui` provides some toolbar icons
+
+```jsx
+import {
+   ArrowLeftIcon,
+   ArrowRightIcon,
+   RotateLeftIcon,
+   RotateRightIcon,
+   ZoomInIcon,
+   ZoomOutIcon,
+   OneToOneIcon,
+   DownloadIcon,
+   LoadingIcon,
+   CloseIcon,
+} from 'react-image-previewer/ui'
+
+```
+<DocIcons />
+
+### Close button
+
+`react-image-previewer/ui` provides a close button `CloseButton`, its default position is in the upper right corner
+
+```jsx
+import { CloseButton } from 'react-image-previewer/ui'
+
+<PhotoProvider
+   overlayRender={({ onClose }) => {
+     return <CloseButton onClick={onClose} />
+   }}
+/>
+```
+
+<DocCloseUI />
+
+### Toolbar suitable for sliding mode
+
+`react-image-previewer/ui` provides a toolbar suitable for sliding mode `SlideToolbar`
+
+Four buttons are provided, their behavior and position are built in, and they are optimized for mobile devices
+
+- `arrowLeft` left arrow, click to switch to the previous image
+- `arrowRight` right arrow, click to switch to the next image
+- `countText` is used to display the index `2/5` of the current image
+- `download` download button, click to download the current image
+
+```jsx
+import { SlideToolbar, CloseButton } from 'react-image-previewer/ui'
+
+<PhotoProvider
+   overlayRender={props => {
+     return (
+       <>
+         <SlideToolbar {...props} />
+         <CloseButton onClick={props. onClose} />
+       </>
+     )
+   }}
+/>
+```
+Options:
+
+- `items` sets toolbar buttons, defaults to [ 'arrowLeft', 'countText', 'arrowRight', 'download']
+
+```jsx
+import { SlideToolbar } from 'react-image-previewer/ui'
+
+<SlideToolbar {...props} items={[ 'arrowLeft', 'countText', 'arrowRight', 'download']} />
+```
+
+In addition to using them via `key`, you can modify their styles or wrap external components via `children`. Setting `items` will be invalid at this time
+
+```jsx
+import { SlideToolbar, SildeArrowLeft, SlideArrowRight, SlideCountText, SlideDownload } from 'react-image-previewer/ui'
+
+<SlideToolbar {...props}>
+   <Tooltip content="prev"><SildeArrowLeft {...props} /></Tooltip>
+   <Tooltip content="next"><SlideArrowRight {...props} /></Tooltip>
+   <SlideCountText {...props} className="count-text" />
+   <SlideDownload {...props} className="download" />
+</SlideToolbar>
+```
+
+<DocSlide />
+
+### Toolbar suitable for drag and drop mode
+
+`react-image-previewer/ui` provides a toolbar `DragToolbar` suitable for sliding mode, its default position is just below
+
+11 button types are provided
+
+- `arrowLeft` left arrow, click to switch to the previous image
+- `countText` is used to display the index `2/5` of the current image
+- `arrowRight` right arrow, click to switch to the next image
+- `zoomOut` to zoom in, click to perform the zoom-in operation
+- `scaleCount` shows the current zoom level `45%`
+- `zoomIn` zoom out, click to perform zoom out operation
+- `oneToOne` scaling is adjusted to the original image size `100%`
+- `download` download button, click to download the current image
+- `rotateLeft` rotate left, click to rotate left `90` degree
+- `rotateRight` rotates right, click to rotate right by `90` degrees
+- `split` dividing line, used to split the button combination
+
+Zoom in/Zoom sets the increment scale
+
+- When `scale` < `0.5`, scale up by `0.05`
+- When `scale` < `1.5`, scale up by `0.1`
+- When `scale` < `3`, scale up by `0.25`
+- When `scale` < `6`, scale up by `0.5`
+
+```jsx
+import { DragToolbar, CloseButton } from 'react-image-previewer/ui'
+
+<PhotoProvider
+   overlayRender={props => {
+     return (
+       <>
+         <DragToolbar {...props} />
+         <CloseButton onClick={props. onClose} />
+       </>
+     )
+   }}
+/>
+```
+Options:
+
+- items set the toolbar button, the default is [ 'arrowLeft', 'countText', 'arrowRight', 'split', 'zoomOut', 'scaleCount', 'zoomIn', 'oneToOne', 'split', 'download', 'split', 'rotateLeft', 'rotateRight']
+- children can append child nodes to the toolbar root node
+- className set additional style name
+
+In addition to using `key` to set the button type, you can also freely configure the toolbar button object, or override the default built-in button component
+
+```jsx
+import { DragStyledItem, DragStyledLabel } from 'react-image-previewer/ui'
+
+<DragToolbar {...props} items={
+   [
+     'arrowLeft', 'countText', 'arrowRight',
+     'split',
+     {
+       key: 'dog',
+       component: ({ index }) => {
+         return (
+           <DragStyledItem
+             onClick={() => {
+               setImages(prev => {
+                 const result = [...prev]
+                 result.splice(index, 1, dog.src)
+                 return result
+               })
+             }}>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="1em"
+              height="1em"
+              viewBox="0 0 768 768"
+              fill="currentColor"
+            >
+              <path d="M384 559.5c-75 0-138-45-163.5-111h327c-25.5 66-88.5 111-163.5 111zM271.5 352.5c-27 0-48-21-48-48s21-48 48-48 48 21 48 48-21 48-48 48zM496.5 352.5c-27 0-48-21-48-48s21-48 48-48 48 21 48 48-21 48-48 48zM384 640.5c141 0 256.5-115.5 256.5-256.5s-115.5-256.5-256.5-256.5-256.5 115.5-256.5 256.5 115.5 256.5 256.5 256.5zM384 64.5c177 0 319.5 142.5 319.5 319.5s-142.5 319.5-319.5 319.5-319.5-142.5-319.5-319.5 142.5-319.5 319.5-319.5z" />
+            </svg>
+          </DragStyledItem>
+        )
+      },
+    },
+    {
+      key: 'label',
+      component: ({ loading }) => {
+        return (
+          <DragStyledLabel>
+            I`m {loading ? 'loading' : 'loaded'}
+          </DragStyledLabel>
+        )
+      }
+    }
+  ]
+} />
+```
+
+<DocToolbar />

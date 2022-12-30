@@ -40,7 +40,42 @@ export default function App() {
 
 In this example, `react-image-previewer` provides two components: `PhotoProvider` and `PhotoView`. With the `PhotoProvider` as the boundary, all the `PhotoView` images in it will be extracted as a set of image preview galleries in the running order. When an `<img >` is clicked, it will locate the specified image and open the preview.
 
-## features
+<Callout emoji="💡">
+  Note: Basic usage will not carry any toolbar UI and buttons.
+</Callout>
+
+## Toolbar related UI
+
+`react-image-previewer` provides two complete sets of toolbar UI components, which can be imported by `react-image-previewer/ui`.
+
+Arbitrary overlays can be rendered using the `overlayRender` property. For example, we can use `SlideToolbar` and `CloseButton` to implement a simple toolbar.
+
+[More UI configuration](/docs/getting-started#ui)
+
+```js
+import { PhotoProvider, PhotoView } from 'react-image-previewer';
+import { SlideToolbar, CloseButton } from 'react-image-previewer/ui';
+
+function App() {
+  return (
+    <PhotoProvider overlayRender={props => {
+        const { onClose } = props
+        return (
+          <>
+            <SlideToolbar {...props} />
+            <CloseButton onClick={onClose} />
+          </>
+        )
+      }}>
+      <PhotoView src="/1.jpg">
+        <img src="/1-thumbnail.jpg" alt="" />
+      </PhotoView>
+    </PhotoProvider>
+  );
+}
+```
+
+## Features
 
 It has very perfect details and features:
 

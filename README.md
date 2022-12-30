@@ -20,7 +20,7 @@
 - [Getting Started](https://react-image-previewer-example.vercel.app)
 - [Basic usage](https://react-image-previewer-example.vercel.app/docs/getting-started)
 - [API](https://react-image-previewer-example.vercel.app/docs/api)
-- [Change log](https://react-image-previewer-example.vercel.app/docs/change-log)
+- [Change log](https://github.com/big-camel/react-image-previewer/blob/master/packages/core/CHANGELOG.md)
 
 ## features
 
@@ -30,7 +30,8 @@
 - Support for custom previews like `<video>` or any `HTML` element
 - Keyboard navigation, drag mode **supports free dragging in the view, zooming according to the size of the picture**, perfectly adapted to the desktop
 - Support custom node expansion, easy to achieve full-screen preview, rotation control, picture introduction and more functions
-- Based on `typescript`, `7KB Gzipped`, supports server-side rendering
+- Toolbar UI components are separated, and custom toolbars are supported
+- Based on `typescript`, supports server-side rendering
 - Simple and easy to use `API`, zero cost to get started
 
 ## Install
@@ -43,10 +44,44 @@ yarn add react-image-previewer
 
 ```js
 import { PhotoProvider, PhotoView } from 'react-image-previewer';
+import { SlideToolbar, CloseButton } from 'react-image-previewer/ui';
 
 function App() {
   return (
-    <PhotoProvider>
+    <PhotoProvider overlayRender={props => {
+        const { onClose } = props
+        return (
+          <>
+            <SlideToolbar {...props} />
+            <CloseButton onClick={onClose} />
+          </>
+        )
+      }}>
+      <PhotoView src="/1.jpg">
+        <img src="/1-thumbnail.jpg" alt="" />
+      </PhotoView>
+    </PhotoProvider>
+  );
+}
+```
+
+## Use the built-in toolbar:
+
+```js
+import { PhotoProvider, PhotoView } from 'react-image-previewer';
+import { SlideToolbar, CloseButton } from 'react-image-previewer/ui';
+
+function App() {
+  return (
+    <PhotoProvider overlayRender={props => {
+        const { onClose } = props
+        return (
+          <>
+            <SlideToolbar {...props} />
+            <CloseButton onClick={onClose} />
+          </>
+        )
+      }}>
       <PhotoView src="/1.jpg">
         <img src="/1-thumbnail.jpg" alt="" />
       </PhotoView>

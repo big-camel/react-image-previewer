@@ -454,15 +454,18 @@ export default function PhotoBox({
   }, [loaded])
 
   function handlePhotoLoad(params: IPhotoLoadedParams) {
-    updateState({
-      ...params,
-      ...(params.loaded &&
-        getSuitableImageSize(
+    const state = params.loaded
+      ? getSuitableImageSize(
           isDragMode,
           params.naturalWidth || 0,
           params.naturalHeight || 0,
           rotate,
-        )),
+        )
+      : {}
+    if (isDragMode && params.loaded) expose({ scale: state.scale as number })
+    updateState({
+      ...params,
+      ...state,
     })
   }
 
@@ -561,7 +564,7 @@ export default function PhotoBox({
         // 初始状态无渐变
         easingMode > 2
           ? isDragMode
-            ? `width ${transitionLayoutTime}ms ${easing}, height ${transitionLayoutTime}ms ${easing}`
+            ? `${transitionCSS}, width ${transitionLayoutTime}ms ${easing}, height ${transitionLayoutTime}ms ${easing}`
             : `${transitionCSS}, opacity ${speed}ms ease, height ${transitionLayoutTime}ms ${easing}`
           : undefined,
     },

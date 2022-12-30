@@ -27,7 +27,7 @@ import qrcode from '../images/qrcode.jpg';
 ```jsx
 import { PhotoProvider, PhotoView } from 'react-image-previewer';
 
-export default function App() {
+function App() {
   return (
     <PhotoProvider>
       <PhotoView src="/1.jpg">
@@ -40,6 +40,41 @@ export default function App() {
 
 该示例中，`react-image-previewer` 提供了两个组件： `PhotoProvider` 和 `PhotoView`。以 `PhotoProvider`为界限，里面所有的 `PhotoView` 图片会按照运行顺序提取为一组图片预览画廊。当某个 `<img />` 被点击，则会定位到指定的图片并打开预览。
 
+<Callout emoji="💡">
+  注意：基本使用不会携带任何工具栏UI和按钮。
+</Callout>
+
+## 工具栏相关UI
+
+`react-image-previewer` 提供了两套完整的工具栏UI组件，可以通过 `react-image-previewer/ui` 导入。
+
+使用 `overlayRender` 属性可以渲染任意的覆盖物。例如，我们可以使用 `SlideToolbar` 和 `CloseButton` 来实现一个简单的工具栏。
+
+[更多UI配置](/docs/getting-started#ui)
+
+```js
+import { PhotoProvider, PhotoView } from 'react-image-previewer';
+import { SlideToolbar, CloseButton } from 'react-image-previewer/ui';
+
+function App() {
+  return (
+    <PhotoProvider overlayRender={props => {
+        const { onClose } = props
+        return (
+          <>
+            <SlideToolbar {...props} />
+            <CloseButton onClick={onClose} />
+          </>
+        )
+      }}>
+      <PhotoView src="/1.jpg">
+        <img src="/1-thumbnail.jpg" alt="" />
+      </PhotoView>
+    </PhotoProvider>
+  );
+}
+```
+
 ## 特性
 
 它拥有非常完善的细节与特性：
@@ -50,7 +85,8 @@ export default function App() {
 - 支持自定义如 `<video />` 或任意 `HTML` 元素的预览
 - 键盘导航，drag模式**支持视图内自由拖拽，按图片大小缩放**，完美适配桌面端
 - 支持自定义节点扩展，轻松实现**全屏预览、旋转控制、图片介绍**以及更多功能
-- 基于 `typescript`，`7KB Gzipped`，支持服务端渲染
+- 工具栏UI组件分离，支持自定义工具栏
+- 基于 `typescript`，支持服务端渲染
 - 简单易用的 `API`，上手零成本
 
 ## 关于

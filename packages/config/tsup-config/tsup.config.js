@@ -17,7 +17,7 @@ module.exports = options => {
       }),
     ],
     esbuildOptions(options) {
-      options.external = ['react', 'react-dom']
+      options.external = ['react', 'react-dom', 'styled-components']
     },
   }
 }

@@ -1,5 +1,3 @@
-import isTouchDevice from './utils/isTouchDevice'
-
 /**
  * 最大触摸时间
  */

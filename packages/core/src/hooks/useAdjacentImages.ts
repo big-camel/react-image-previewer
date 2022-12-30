@@ -28,7 +28,7 @@ export default function useAdjacentImages(
 
       const adjacentImages: AdjacentDataType[] = []
 
-      for (let i = 0; i < sliceImages.length - 1; i++) {
+      for (let i = 0; i < sliceImages.length; i++) {
         const image = sliceImages[i]
         if (i !== 1 && image.key === currentImage.key) {
           adjacentImages.push({ ...image, isCloned: true })

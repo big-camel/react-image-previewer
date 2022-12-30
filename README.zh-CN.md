@@ -20,7 +20,7 @@
 - [文档入口](https://react-image-previewer-example.vercel.app)
 - [基本示例](https://react-image-previewer-example.vercel.app/docs/getting-started)
 - [API](https://react-image-previewer-example.vercel.app/docs/api)
-- [更新日志](https://react-image-previewer-example.vercel.app/docs/change-log)
+- [更新日志](https://github.com/big-camel/react-image-previewer/blob/master/packages/core/CHANGELOG.md)
 
 ## 特性
 
@@ -30,7 +30,8 @@
 - 支持自定义如 `<video />` 或任意 `HTML` 元素的预览
 - 键盘导航，drag模式**支持视图内自由拖拽，按图片大小缩放**，完美适配桌面端
 - 支持自定义节点扩展，轻松实现**全屏预览、旋转控制、图片介绍**以及更多功能
-- 基于 `typescript`，`7KB Gzipped`，支持服务端渲染
+- 工具栏UI组件分离，支持自定义工具栏
+- 基于 `typescript`，支持服务端渲染
 - 简单易用的 `API`，上手零成本
 
 ## 安装
@@ -47,6 +48,31 @@ import { PhotoProvider, PhotoView } from 'react-image-previewer';
 function App() {
   return (
     <PhotoProvider>
+      <PhotoView src="/1.jpg">
+        <img src="/1-thumbnail.jpg" alt="" />
+      </PhotoView>
+    </PhotoProvider>
+  );
+}
+```
+
+## 使用内置工具栏:
+
+```js
+import { PhotoProvider, PhotoView } from 'react-image-previewer';
+import { SlideToolbar, CloseButton } from 'react-image-previewer/ui';
+
+function App() {
+  return (
+    <PhotoProvider overlayRender={props => {
+        const { onClose } = props
+        return (
+          <>
+            <SlideToolbar {...props} />
+            <CloseButton onClick={onClose} />
+          </>
+        )
+      }}>
       <PhotoView src="/1.jpg">
         <img src="/1-thumbnail.jpg" alt="" />
       </PhotoView>

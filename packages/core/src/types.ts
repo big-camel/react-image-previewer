@@ -79,19 +79,12 @@ export interface PhotoProviderBase {
    * @defaultValue true
    */
   pullClosable?: boolean
-  /**
-   * 导航条 visible
-   * @defaultValue true
-   */
-  bannerVisible?: boolean
+
   /**
    * 自定义渲染覆盖物
    */
   overlayRender?: (overlayProps: OverlayRenderProps) => React.ReactNode
-  /**
-   * 自定义渲染工具栏
-   */
-  toolbarRender?: (overlayProps: OverlayRenderProps) => React.ReactNode
+
   className?: string
   maskClassName?: string
   photoWrapClassName?: string
@@ -135,6 +128,10 @@ export interface OverlayRenderProps {
    * 当前预览图片是否加载中
    */
   loading: boolean
+  /**
+   * 是否循环预览
+   */
+  loop: boolean
   /**
    * 当前模式
    */
