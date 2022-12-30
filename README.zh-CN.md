@@ -17,10 +17,10 @@
 
 ## 快速开始
 
-- [文档入口](https://react-image-previewer.vercel.app)
-- [基本示例](https://react-image-previewer.vercel.app/docs/getting-started)
-- [API](https://react-image-previewer.vercel.app/docs/api)
-- [更新日志](https://react-image-previewer.vercel.app/docs/change-log)
+- [文档入口](https://react-image-previewer-example.vercel.app)
+- [基本示例](https://react-image-previewer-example.vercel.app/docs/getting-started)
+- [API](https://react-image-previewer-example.vercel.app/docs/api)
+- [更新日志](https://react-image-previewer-example.vercel.app/docs/change-log)
 
 ## 特性
 

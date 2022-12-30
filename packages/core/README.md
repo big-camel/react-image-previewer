@@ -6,10 +6,10 @@
 
 ## Quick start
 
-- [Documentation](https://react-image-previewer.vercel.app)
-- [Getting started](https://react-image-previewer.vercel.app/docs/getting-started)
-- [API](https://react-image-previewer.vercel.app/docs/api)
-- [Change log](https://react-image-previewer.vercel.app/docs/change-log)
+- [Documentation](https://react-image-previewer-example.vercel.app)
+- [Getting started](https://react-image-previewer-example.vercel.app/docs/getting-started)
+- [API](https://react-image-previewer-example.vercel.app/docs/api)
+- [Change log](https://react-image-previewer-example.vercel.app/docs/change-log)
 
 ## License
 
