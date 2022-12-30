@@ -1,5 +1,5 @@
 import React from 'react'
-import { PhotoProvider, PhotoView } from 'react-photo-view'
+import { PhotoProvider, PhotoView } from 'react-image-previewer'
 import { ImageList, photoImages, Image } from './doc-components'
 
 export default function DocDemo() {

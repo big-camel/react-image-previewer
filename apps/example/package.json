@@ -21,7 +21,7 @@
     "nextra-theme-docs": "^2.0.1",
     "react": "^17.x",
     "react-dom": "^17.x",
-    "react-photo-view": "workspace:*",
+    "react-image-previewer": "workspace:*",
     "styled-components": "5.3.5"
   },
   "devDependencies": {

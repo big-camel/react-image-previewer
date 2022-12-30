@@ -26,20 +26,20 @@ import DocRender from '../../components/doc-render';
 
 pnpm:
 
-```plaintext
-pnpm i react-photo-view
+```bash
+pnpm i react-image-previewer
 ```
 
 yarn:
 
-```plaintext
-yarn add react-photo-view
+```bash
+yarn add react-image-previewer
 ```
 
 或者用 npm:
 
-```plaintext
-npm install react-photo-view
+```bash
+npm install react-image-previewer
 ```
 
 ## 快速开始
@@ -47,7 +47,7 @@ npm install react-photo-view
 在需要使用的地方引入 `PhotoProvider` 和 `PhotoView` 组件，基本用法：
 
 ```jsx
-import { PhotoProvider, PhotoView } from 'react-photo-view';
+import { PhotoProvider, PhotoView } from 'react-image-previewer';
 
 export default function MyComponent() {
   return (
@@ -71,14 +71,14 @@ export default function MyComponent() {
 如果需要整个页面的图片形成一组进行预览，则可以在页面的入口处嵌套 `PhotoProvider`。
 
 <Callout emoji="💡">
-  注意： `react-photo-view` 一次只在 `DOM` 中加载保留三张图片，因为每张图片都是一个合成层，这会消耗相当多的内存。
+  注意： `react-image-previewer` 一次只在 `DOM` 中加载保留三张图片，因为每张图片都是一个合成层，这会消耗相当多的内存。
 </Callout>
 
 ## 过渡动画
 
 ### 过渡效果
 
-`react-photo-view` 为保证更流畅体验，使用了相当多的 `CSS3` 动画，在滚动时使用弹簧动画贴近原生滚动效果。`CSS3` 动画默认持续时间为 `400ms`，使用 `cubic-bezier(0.25, 0.8, 0.25, 1)` 动画函数。
+`react-image-previewer` 为保证更流畅体验，使用了相当多的 `CSS3` 动画，在滚动时使用弹簧动画贴近原生滚动效果。`CSS3` 动画默认持续时间为 `400ms`，使用 `cubic-bezier(0.25, 0.8, 0.25, 1)` 动画函数。
 
 可通过设置 `speed` 、`easing` 来自定义动画时间或函数：
 
@@ -138,7 +138,7 @@ export default function MyComponent() {
 
 ### 旋转
 
-`react-photo-view` 默认不内置旋转控制按钮，但提供了旋转 `API`。我们只需简单添加一个 `SVG` 图片即可实现旋转效果：
+`react-image-previewer` 默认不内置旋转控制按钮，但提供了旋转 `API`。我们只需简单添加一个 `SVG` 图片即可实现旋转效果：
 
 ```jsx
 <PhotoProvider

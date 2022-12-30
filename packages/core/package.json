@@ -1,10 +1,10 @@
 {
-  "name": "react-photo-view",
-  "version": "1.2.3",
+  "name": "react-image-previewer",
+  "version": "1.0.0",
   "description": "An exquisite React photo preview component",
   "author": "MinJieLiu",
   "license": "Apache-2.0",
-  "repository": "https://github.com/MinJieLiu/react-photo-view.git",
+  "repository": "https://github.com/big-camel/react-image-previewer.git",
   "source": "src/index.ts",
   "main": "./dist/index.js",
   "exports": {
@@ -32,7 +32,7 @@
     "react",
     "react component",
     "react photo",
-    "react-photo-view",
+    "react-image-previewer",
     "photo",
     "image",
     "photo preview",

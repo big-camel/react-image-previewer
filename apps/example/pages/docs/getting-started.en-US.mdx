@@ -26,20 +26,20 @@ Run the following commands in the `React` project directory:
 
 pnpm:
 
-```plaintext
-pnpm i react-photo-view
+```bash
+pnpm i react-image-previewer
 ```
 
 yarn:
 
-```plaintext
-yarn add react-photo-view
+```bash
+yarn add react-image-previewer
 ```
 
 or with npm:
 
-```plaintext
-npm install react-photo-view
+```bash
+npm install react-image-previewer
 ```
 
 ## Quick start
@@ -47,7 +47,7 @@ npm install react-photo-view
 Introduce `PhotoProvider` and `PhotoView` components where they need to be used, basic usage:
 
 ```jsx
-import { PhotoProvider, PhotoView } from 'react-photo-view';
+import { PhotoProvider, PhotoView } from 'react-image-previewer';
 
 export default function MyComponent() {
   return (
@@ -71,7 +71,7 @@ With the `PhotoProvider` as the boundary, all the `PhotoView` images in it will 
 If you need the images of the entire page to form a group for preview, you can nest `PhotoProvider` at the entrance of the page.
 
 <Callout emoji="💡">
-  Note: `react-photo-view` only keeps three images loaded in the `DOM` at a time, since each image is a compositing
+  Note: `react-image-previewer` only keeps three images loaded in the `DOM` at a time, since each image is a compositing
   layer, which consumes quite a bit of memory.
 </Callout>
 
@@ -79,7 +79,7 @@ If you need the images of the entire page to form a group for preview, you can n
 
 ### Transition effect
 
-`react-photo-view` uses quite a lot of `CSS3` animations to ensure a smoother experience, and uses spring animations to stay close to the native scrolling effect when scrolling. `CSS3` animations have a default duration of `400ms`, using the `cubic-bezier(0.25, 0.8, 0.25, 1)` animation function.
+`react-image-previewer` uses quite a lot of `CSS3` animations to ensure a smoother experience, and uses spring animations to stay close to the native scrolling effect when scrolling. `CSS3` animations have a default duration of `400ms`, using the `cubic-bezier(0.25, 0.8, 0.25, 1)` animation function.
 
 You can customize the animation time or function by setting `speed` , `easing`:
 
@@ -139,7 +139,7 @@ Add a `scale` control to achieve zoom in and out buttons:
 
 ### Rotate
 
-`react-photo-view` does not have a built-in rotation control button by default, but provides a rotation `API`. We can achieve the rotation effect by simply adding an `SVG` image:
+`react-image-previewer` does not have a built-in rotation control button by default, but provides a rotation `API`. We can achieve the rotation effect by simply adding an `SVG` image:
 
 ```jsx
 <PhotoProvider

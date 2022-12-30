@@ -8,9 +8,9 @@ const Vercel = ({ height = 20 }) => (
 )
 
 export default {
-  project: { link: 'https://github.com/MinJieLiu/react-photo-view' }, // GitHub link in the navbar
-  docsRepositoryBase: 'https://github.com/MinJieLiu/react-photo-view/tree/master/example', // base URL for the docs repository
-  titleSuffix: ' – react-photo-view',
+  project: { link: 'https://github.com/big-camel/react-image-previewer' }, // GitHub link in the navbar
+  docsRepositoryBase: 'https://github.com/big-camel/react-image-previewer/tree/master/example', // base URL for the docs repository
+  titleSuffix: ' – react-image-previewer',
   unstable_flexsearch: true,
   toc: {
     float: true,
@@ -48,12 +48,15 @@ export default {
       }
     },
   },
-  logo: <span>react-photo-view</span>,
+  logo: <span>react-image-previewer</span>,
   head: (
     <>
       <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-      <meta name="description" content="react-photo-view: A beautiful photo preview component" />
-      <meta name="og:title" content="react-photo-view: A beautiful photo preview component" />
+      <meta
+        name="description"
+        content="react-image-previewer: A beautiful photo preview component"
+      />
+      <meta name="og:title" content="react-image-previewer: A beautiful photo preview component" />
     </>
   ),
   i18n: [

@@ -1,6 +1,6 @@
 {
   "$schema": "https://unpkg.com/@changesets/config@2.0.0/schema.json",
-  "changelog": ["@changesets/changelog-github", { "repo": "MinJieLiu/react-photo-view" }],
+  "changelog": ["@changesets/changelog-github", { "repo": "big-camel/react-image-previewer" }],
   "commit": false,
   "fixed": [],
   "linked": [],

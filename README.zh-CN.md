@@ -1,4 +1,8 @@
-# react-photo-view
+> ## 此仓库 fork 自 https://github.com/MinJieLiu/react-photo-view
+> 由于 [react-photo-view](https://github.com/MinJieLiu/react-photo-view) 的更新不再及时，所以创建此仓库。
+> 此仓库更新的内容可以看这个 pr https://github.com/MinJieLiu/react-photo-view/pull/140
+
+# react-image-previewer
 
 **中文** | [English](./README.md)
 
@@ -13,10 +17,10 @@
 
 ## 快速开始
 
-- [文档入口](https://react-photo-view.vercel.app)
-- [基本示例](https://react-photo-view.vercel.app/docs/getting-started)
-- [API](https://react-photo-view.vercel.app/docs/api)
-- [更新日志](https://react-photo-view.vercel.app/docs/change-log)
+- [文档入口](https://react-image-previewer.vercel.app)
+- [基本示例](https://react-image-previewer.vercel.app/docs/getting-started)
+- [API](https://react-image-previewer.vercel.app/docs/api)
+- [更新日志](https://react-image-previewer.vercel.app/docs/change-log)
 
 ## 特性
 
@@ -24,7 +28,7 @@
 - 全方面动画衔接，**打开/关闭/回弹/触边**，顺其自然的交互效果
 - 图像自适应，以一个合适的最初呈现大小，并根据调整自适应
 - 支持自定义如 `<video />` 或任意 `HTML` 元素的预览
-- 键盘导航，完美适配桌面端
+- 键盘导航，drag模式**支持视图内自由拖拽，按图片大小缩放**，完美适配桌面端
 - 支持自定义节点扩展，轻松实现**全屏预览、旋转控制、图片介绍**以及更多功能
 - 基于 `typescript`，`7KB Gzipped`，支持服务端渲染
 - 简单易用的 `API`，上手零成本
@@ -32,13 +36,13 @@
 ## 安装
 
 ```bash
-yarn add react-photo-view
+yarn add react-image-previewer
 ```
 
 ## 基本使用:
 
 ```js
-import { PhotoProvider, PhotoView } from 'react-photo-view';
+import { PhotoProvider, PhotoView } from 'react-image-previewer';
 
 function App() {
   return (
@@ -55,10 +59,10 @@ function App() {
 
 Apache-2.0 © [MinJieLiu](https://github.com/MinJieLiu)
 
-[npm-image]: https://img.shields.io/npm/v/react-photo-view.svg?style=flat-square
-[npm-url]: https://npmjs.org/package/react-photo-view
-[downloads-image]: http://img.shields.io/npm/dm/react-photo-view.svg?style=flat-square
-[downloads-url]: https://npmjs.org/package/react-photo-view
-[min-size-image]: https://badgen.net/bundlephobia/min/react-photo-view?label=minified
-[gzip-size-image]: https://badgen.net/bundlephobia/minzip/react-photo-view?label=gzip
-[bundlephobia-url]: https://bundlephobia.com/result?p=react-photo-view
+[npm-image]: https://img.shields.io/npm/v/react-image-previewer.svg?style=flat-square
+[npm-url]: https://npmjs.org/package/react-image-previewer
+[downloads-image]: http://img.shields.io/npm/dm/react-image-previewer.svg?style=flat-square
+[downloads-url]: https://npmjs.org/package/react-image-previewer
+[min-size-image]: https://badgen.net/bundlephobia/min/react-image-previewer?label=minified
+[gzip-size-image]: https://badgen.net/bundlephobia/minzip/react-image-previewer?label=gzip
+[bundlephobia-url]: https://bundlephobia.com/result?p=react-image-previewer

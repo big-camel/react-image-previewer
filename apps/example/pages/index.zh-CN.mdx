@@ -8,16 +8,16 @@ import Features from '../components/features';
 import Index from '../components/doc-index';
 import qrcode from '../images/qrcode.jpg';
 
-<h1 tw="text-center font-bold md:text-5xl mt-8">react-photo-view</h1>
+<h1 tw="text-center font-bold md:text-5xl mt-8">react-image-previewer</h1>
 
 <Bleed>
   <Features />
 </Bleed>
 
-`react-photo-view` 拥有无与伦比的预览交互体验：从打开图像开始，每一帧的动画、细节和交互都经过了精心设计与反复调试，媲美原生图片预览的效果。
+`react-image-previewer` 拥有无与伦比的预览交互体验：从打开图像开始，每一帧的动画、细节和交互都经过了精心设计与反复调试，媲美原生图片预览的效果。
 
 <div tw="mt-16 mb-20 text-center">
-  [示例](/docs/getting-started) · [API](/docs/api) · [GitHub 仓库](https://github.com/MinJieLiu/react-photo-view.git)
+  [示例](/docs/getting-started) · [API](/docs/api) · [GitHub 仓库](https://github.com/big-camel/react-image-previewer.git)
 </div>
 
 <Index />
@@ -25,7 +25,7 @@ import qrcode from '../images/qrcode.jpg';
 ## 概览
 
 ```jsx
-import { PhotoProvider, PhotoView } from 'react-photo-view';
+import { PhotoProvider, PhotoView } from 'react-image-previewer';
 
 export default function App() {
   return (
@@ -38,7 +38,7 @@ export default function App() {
 }
 ```
 
-该示例中，`react-photo-view` 提供了两个组件： `PhotoProvider` 和 `PhotoView`。以 `PhotoProvider`为界限，里面所有的 `PhotoView` 图片会按照运行顺序提取为一组图片预览画廊。当某个 `<img />` 被点击，则会定位到指定的图片并打开预览。
+该示例中，`react-image-previewer` 提供了两个组件： `PhotoProvider` 和 `PhotoView`。以 `PhotoProvider`为界限，里面所有的 `PhotoView` 图片会按照运行顺序提取为一组图片预览画廊。当某个 `<img />` 被点击，则会定位到指定的图片并打开预览。
 
 ## 特性
 
@@ -48,7 +48,7 @@ export default function App() {
 - 全方面动画衔接，**打开/关闭/回弹/触边**，顺其自然的交互效果
 - 图像自适应，以一个合适的最初呈现大小，并根据调整自适应
 - 支持自定义如 `<video />` 或任意 `HTML` 元素的预览
-- 键盘导航，完美适配桌面端
+- 键盘导航，drag模式**支持视图内自由拖拽，按图片大小缩放**，完美适配桌面端
 - 支持自定义节点扩展，轻松实现**全屏预览、旋转控制、图片介绍**以及更多功能
 - 基于 `typescript`，`7KB Gzipped`，支持服务端渲染
 - 简单易用的 `API`，上手零成本
@@ -58,50 +58,43 @@ export default function App() {
 <p tw="flex flex-wrap">
   <img
     alt="stars"
-    src="https://badgen.net/github/stars/MinJieLiu/react-photo-view"
+    src="https://badgen.net/github/stars/big-camel/react-image-previewer"
     tw="mr-2 mb-2"
   />
   <img
     alt="version"
-    src="https://img.shields.io/npm/v/react-photo-view.svg?style=flat-square"
+    src="https://img.shields.io/npm/v/react-image-previewer.svg?style=flat-square"
     tw="mr-2 mb-2"
   />
   <img
     alt="downloads"
-    src="http://img.shields.io/npm/dm/react-photo-view.svg?style=flat-square"
+    src="http://img.shields.io/npm/dm/react-image-previewer.svg?style=flat-square"
     tw="mr-2 mb-2"
   />
-  <img alt="license" src="https://badgen.net/npm/license/react-photo-view" tw="mr-2 mb-2" />
+  <img alt="license" src="https://badgen.net/npm/license/react-image-previewer" tw="mr-2 mb-2" />
   <img
     alt="min"
-    src="https://badgen.net/bundlephobia/min/react-photo-view?label=minified"
+    src="https://badgen.net/bundlephobia/min/react-image-previewer?label=minified"
     tw="mr-2 mb-2"
   />
   <img
     alt="gzip"
-    src="https://badgen.net/bundlephobia/minzip/react-photo-view?label=gzip"
+    src="https://badgen.net/bundlephobia/minzip/react-image-previewer?label=gzip"
     tw="mr-2 mb-2"
   />
 </p>
 
-`react-photo-view` 由 [MinJieLiu](https://github.com/MinJieLiu) 创建
+`react-photo-view` 由 [MinJieLiu](https://github.com/MinJieLiu) 创建，`react-image-previewer` fork 自[react-photo-view](https://github.com/MinJieLiu/react-photo-view) 然后由 [YiYang](https://github.com/big-camel) 创建，并提供此分支的维护
 
 <Callout emoji="😄">
   <span>点个 Star 不迷路 👉 </span>
-  <a tw="inline-block" href="https://github.com/MinJieLiu/react-photo-view" target="_blank">
+  <a tw="inline-block" href="https://github.com/big-camel/react-image-previewer" target="_blank">
     去 Star
   </a>
   <span> 感谢支持！</span>
 </Callout>
 
-- [稀土掘金](https://juejin.cn/user/289926798650509)
-- [知乎](https://www.zhihu.com/people/liumingyi)
-- [GitHub](https://github.com/MinJieLiu)
-- [Gitee](https://gitee.com/MinJieLiu)
-
-加我好友，拉你进前端交流进阶大群（备注：加群）
-
-<img alt="code" src={qrcode.src} tw="block w-36" />
+- [GitHub](https://github.com/big-camel)
 
 ## License
 

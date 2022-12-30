@@ -4,7 +4,7 @@
   "description": "An exquisite React photo preview component",
   "author": "MinJieLiu",
   "license": "Apache-2.0",
-  "repository": "https://github.com/MinJieLiu/react-photo-view.git",
+  "repository": "https://github.com/big-camel/react-image-previewer.git",
   "workspaces": [
     "packages/*"
   ],
