@@ -27,6 +27,8 @@ export const Image = React.forwardRef<HTMLImageElement, React.ImgHTMLAttributes<
   },
 )
 
+Image.displayName = 'DocImage'
+
 interface ButtonProps extends React.HtmlHTMLAttributes<HTMLDivElement> {
   primary?: boolean
   children?: React.ReactNode
@@ -50,6 +52,8 @@ export const Button = React.forwardRef<HTMLDivElement, ButtonProps>(
   },
 )
 
+Button.displayName = 'DocButton'
+
 export const Overlay: React.FC = ({ children }) => {
   return (
     <div tw="absolute left-0 bottom-0 p-2 w-full min-h-[24px] text-sm text-slate-300 z-50 bg-black/50">
@@ -57,3 +61,5 @@ export const Overlay: React.FC = ({ children }) => {
     </div>
   )
 }
+
+Overlay.displayName = 'DocOverlay'

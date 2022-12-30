@@ -58,6 +58,8 @@ const Feature = ({ text, icon }: { text: string; icon: React.ReactNode }) => (
   </StyledFeature>
 )
 
+Feature.displayName = 'Feature'
+
 const TITLE_WITH_TRANSLATIONS: Record<string, string> = {
   'en-US': 'A beautiful photo preview component',
   'zh-CN': '一款超精致的 React 图片预览组件',
@@ -103,7 +105,7 @@ const StyledFeatures = styled.div`
   }
 `
 
-export default () => {
+const Features = () => {
   const { locale, defaultLocale } = useRouter()
 
   const featureText = (key: number) => FEATURES_WITH_TRANSLATIONS[locale ?? defaultLocale!]?.[key]
@@ -119,3 +121,7 @@ export default () => {
     </div>
   )
 }
+
+Features.displayName = 'Features'
+
+export default Features
