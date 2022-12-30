@@ -1,6 +1,6 @@
-> ## 此仓库 fork 自 https://github.com/MinJieLiu/react-photo-view
-> 由于 [react-photo-view](https://github.com/MinJieLiu/react-photo-view) 的更新不再及时，所以创建此仓库。
-> 此仓库更新的内容可以看这个 pr https://github.com/MinJieLiu/react-photo-view/pull/140
+> ### 此仓库 fork 自 https://github.com/MinJieLiu/react-photo-view
+> ### 由于 [react-photo-view](https://github.com/MinJieLiu/react-photo-view) 的更新不再及时，所以创建此仓库。
+> ### 此仓库更新的内容可以看这个 pr https://github.com/MinJieLiu/react-photo-view/pull/140
 
 # react-image-previewer
 
