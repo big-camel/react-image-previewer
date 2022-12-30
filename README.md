@@ -17,10 +17,10 @@
 
 ## Quick start
 
-- [Getting Started](https://react-image-previewer.vercel.app)
-- [Basic usage](https://react-image-previewer.vercel.app/docs/getting-started)
-- [API](https://react-image-previewer.vercel.app/docs/api)
-- [Change log](https://react-image-previewer.vercel.app/docs/change-log)
+- [Getting Started](https://react-image-previewer-example.vercel.app)
+- [Basic usage](https://react-image-previewer-example.vercel.app/docs/getting-started)
+- [API](https://react-image-previewer-example.vercel.app/docs/api)
+- [Change log](https://react-image-previewer-example.vercel.app/docs/change-log)
 
 ## features
 
