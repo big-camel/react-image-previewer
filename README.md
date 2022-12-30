@@ -1,6 +1,6 @@
-> ## This warehouse is forked from https://github.com/MinJieLiu/react-photo-view
-> Since the update of [react-photo-view](https://github.com/MinJieLiu/react-photo-view) is no longer timely, this repository was created.
-> You can see this pr https://github.com/MinJieLiu/react-photo-view/pull/140 for the updated content of this warehouse
+> ### This warehouse is forked from https://github.com/MinJieLiu/react-photo-view
+> ### Since the update of [react-photo-view](https://github.com/MinJieLiu/react-photo-view) is no longer timely, this repository was created.
+> ### You can see this pr https://github.com/MinJieLiu/react-photo-view/pull/140 for the updated content of this warehouse
 
 # react-image-previewer
 
