@@ -57,108 +57,136 @@ const getScaleStep = (scale: number, isAdd = true) => {
   return 0.5
 }
 
+export interface DragItemProps extends OverlayRenderProps {
+  className?: string
+}
+
+export const DragArrowLeft: FC<DragItemProps> = ({ index, onIndexChange, images, className }) => {
+  const count = images.length
+  // 当前在第一张
+  const isFirst = index === 0
+
+  const prev = () => {
+    onIndexChange(isFirst ? count - 1 : index - 1)
+  }
+  return (
+    <DragStyledItem disabled={isFirst} onClick={prev} className={className}>
+      <ArrowLeftIcon />
+    </DragStyledItem>
+  )
+}
+
+export const DragCountText: FC<DragItemProps> = ({ index, images, className }) => {
+  const count = images.length
+  return <DragStyledLabel className={className}>{`${index + 1}/${count}`}</DragStyledLabel>
+}
+
+export const DragArrowRight: FC<DragItemProps> = ({ index, onIndexChange, images, className }) => {
+  const count = images.length
+  // 当前在最后一张
+  const isLast = index === count - 1
+
+  const next = () => {
+    onIndexChange(isLast ? 0 : index + 1)
+  }
+  return (
+    <DragStyledItem disabled={isLast} onClick={next} className={className}>
+      <ArrowRightIcon />
+    </DragStyledItem>
+  )
+}
+
+export const DragSplit: FC<DragItemProps> = ({ className }) => {
+  return <DragStyledSplit className={className} />
+}
+
+export const DragZoomOut: FC<DragItemProps> = ({ scale, onScale, loading, className }) => {
+  const handleZoomOut = () => {
+    onScale(scale - getScaleStep(scale, false))
+  }
+  return (
+    <DragStyledItem disabled={loading} onClick={handleZoomOut} className={className}>
+      <ZoomOutIcon />
+    </DragStyledItem>
+  )
+}
+
+export const DragScaleCount: FC<DragItemProps> = ({ scale, className }) => {
+  return <DragStyledLabel className={className}>{`${Math.round(scale * 100)}%`}</DragStyledLabel>
+}
+
+export const DragZoomIn: FC<DragItemProps> = ({ scale, onScale, loading, className }) => {
+  const handleZoomIn = () => {
+    onScale(scale + getScaleStep(scale))
+  }
+  return (
+    <DragStyledItem disabled={loading} onClick={handleZoomIn} className={className}>
+      <ZoomInIcon />
+    </DragStyledItem>
+  )
+}
+
+export const DragOneToOne: FC<DragItemProps> = ({ onScale, loading, className }) => {
+  const handleOneToOne = () => {
+    onScale(1)
+  }
+  return (
+    <DragStyledItem disabled={loading} onClick={handleOneToOne} className={className}>
+      <OneToOneIcon />
+    </DragStyledItem>
+  )
+}
+
+export const DragDownload: FC<DragItemProps> = ({ images, index, loading, className }) => {
+  const handleDownload = () => {
+    const { src } = images[index]
+    if (!src) return
+    download(src)
+  }
+  return (
+    <DragStyledItem disabled={loading} onClick={handleDownload} className={className}>
+      <DownloadIcon />
+    </DragStyledItem>
+  )
+}
+
+export const DragRotateLeft: FC<DragItemProps> = ({ rotate, onRotate, loading, className }) => {
+  const handleRotateLeft = () => {
+    onRotate(rotate - 90)
+  }
+  return (
+    <DragStyledItem disabled={loading} onClick={handleRotateLeft} className={className}>
+      <RotateLeftIcon />
+    </DragStyledItem>
+  )
+}
+
+export const DragRotateRight: FC<DragItemProps> = ({ rotate, onRotate, loading, className }) => {
+  const handleRotateRight = () => {
+    onRotate(rotate + 90)
+  }
+  return (
+    <DragStyledItem disabled={loading} onClick={handleRotateRight} className={className}>
+      <RotateRightIcon />
+    </DragStyledItem>
+  )
+}
+
 export const DragToolbarItemDefaultComponent: Record<
   DragToolbarKeys,
   React.FC<OverlayRenderProps>
 > = {
-  arrowLeft: ({ index, onIndexChange, images }: OverlayRenderProps) => {
-    const count = images.length
-    // 当前在第一张
-    const isFirst = index === 0
-
-    const prev = () => {
-      onIndexChange(isFirst ? count - 1 : index - 1)
-    }
-    return (
-      <DragStyledItem disabled={isFirst} onClick={prev}>
-        <ArrowLeftIcon />
-      </DragStyledItem>
-    )
-  },
-  countText: ({ index, images }: OverlayRenderProps) => {
-    const count = images.length
-    return <DragStyledLabel>{`${index + 1}/${count}`}</DragStyledLabel>
-  },
-  arrowRight: ({ index, onIndexChange, images }: OverlayRenderProps) => {
-    const count = images.length
-    // 当前在最后一张
-    const isLast = index === count - 1
-
-    const next = () => {
-      onIndexChange(isLast ? 0 : index + 1)
-    }
-    return (
-      <DragStyledItem disabled={isLast} onClick={next}>
-        <ArrowRightIcon />
-      </DragStyledItem>
-    )
-  },
-  split: DragStyledSplit,
-  zoomOut: ({ scale, onScale, loading }: OverlayRenderProps) => {
-    const handleZoomOut = () => {
-      onScale(scale - getScaleStep(scale, false))
-    }
-    return (
-      <DragStyledItem disabled={loading} onClick={handleZoomOut}>
-        <ZoomOutIcon />
-      </DragStyledItem>
-    )
-  },
-  scaleCount: ({ scale }: OverlayRenderProps) => {
-    return <DragStyledLabel>{`${Math.round(scale * 100)}%`}</DragStyledLabel>
-  },
-  zoomIn: ({ scale, onScale, loading }: OverlayRenderProps) => {
-    const handleZoomIn = () => {
-      onScale(scale + getScaleStep(scale))
-    }
-    return (
-      <DragStyledItem disabled={loading} onClick={handleZoomIn}>
-        <ZoomInIcon />
-      </DragStyledItem>
-    )
-  },
-  oneToOne: ({ onScale, loading }: OverlayRenderProps) => {
-    const handleOneToOne = () => {
-      onScale(1)
-    }
-    return (
-      <DragStyledItem disabled={loading} onClick={handleOneToOne}>
-        <OneToOneIcon />
-      </DragStyledItem>
-    )
-  },
-  download: ({ images, index, loading }: OverlayRenderProps) => {
-    const handleDownload = () => {
-      const { src } = images[index]
-      if (!src) return
-      download(src)
-    }
-    return (
-      <DragStyledItem disabled={loading} onClick={handleDownload}>
-        <DownloadIcon />
-      </DragStyledItem>
-    )
-  },
-  rotateLeft: ({ rotate, onRotate, loading }: OverlayRenderProps) => {
-    const handleRotateLeft = () => {
-      onRotate(rotate - 90)
-    }
-    return (
-      <DragStyledItem disabled={loading} onClick={handleRotateLeft}>
-        <RotateLeftIcon />
-      </DragStyledItem>
-    )
-  },
-  rotateRight: ({ rotate, onRotate, loading }: OverlayRenderProps) => {
-    const handleRotateRight = () => {
-      onRotate(rotate + 90)
-    }
-    return (
-      <DragStyledItem disabled={loading} onClick={handleRotateRight}>
-        <RotateRightIcon />
-      </DragStyledItem>
-    )
-  },
+  arrowLeft: DragArrowLeft,
+  countText: DragCountText,
+  arrowRight: DragArrowRight,
+  split: DragSplit,
+  zoomOut: DragZoomOut,
+  scaleCount: DragScaleCount,
+  zoomIn: DragZoomIn,
+  oneToOne: DragOneToOne,
+  download: DragDownload,
+  rotateLeft: DragRotateLeft,
+  rotateRight: DragRotateRight,
 }
 
 export const DragToolbar: FC<DragToolbarProps> = ({
