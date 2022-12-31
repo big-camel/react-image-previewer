@@ -1,5 +1,11 @@
 # react-image-previewer
 
+## 1.1.1
+
+### Patch Changes
+
+- [`7eb4324`](https://github.com/big-camel/react-image-previewer/commit/7eb43246a316777de7391e79005432cb30ce3fcd) Thanks [@big-camel](https://github.com/big-camel)! - feat: export drag toolbar item
+
 ## 1.1.0
 
 ### Minor Changes
