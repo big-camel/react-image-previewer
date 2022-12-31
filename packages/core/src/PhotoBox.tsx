@@ -449,10 +449,6 @@ export default function PhotoBox({
     }
   }, [isActive])
 
-  useIsomorphicLayoutEffect(() => {
-    expose({ loading: !loaded })
-  }, [loaded])
-
   function handlePhotoLoad(params: IPhotoLoadedParams) {
     const state = params.loaded
       ? getSuitableImageSize(
@@ -462,7 +458,8 @@ export default function PhotoBox({
           rotate,
         )
       : {}
-    if (isDragMode && params.loaded) expose({ scale: state.scale as number })
+    if (isDragMode && params.loaded && isActive)
+      expose({ scale: state.scale as number, loading: false })
     updateState({
       ...params,
       ...state,
