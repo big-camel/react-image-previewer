@@ -460,10 +460,10 @@ import { SlideToolbar } from 'react-image-previewer/ui'
 In addition to using them via `key`, you can modify their styles or wrap external components via `children`. Setting `items` will be invalid at this time
 
 ```jsx
-import { SildeArrowLeft, SlideArrowRight, SlideCountText, SlideDownload } from 'react-image-previewer/ui'
+import { SlideArrowLeft, SlideArrowRight, SlideCountText, SlideDownload } from 'react-image-previewer/ui'
 
 <>
-   <Tooltip content="prev"><SildeArrowLeft {...props} /></Tooltip>
+   <Tooltip content="prev"><SlideArrowLeft {...props} /></Tooltip>
    <Tooltip content="next"><SlideArrowRight {...props} /></Tooltip>
    <SlideCountText {...props} className="count-text" />
    <SlideDownload {...props} className="download" />
