@@ -261,10 +261,14 @@ export const DragToolbar: FC<DragToolbarProps> = ({
       className={className}
     >
       <StyledBox>
-        {items.map(item => {
+        {items.map((item, index) => {
           if (typeof item === 'string') {
             const Component = DragToolbarItemDefaultComponent[item]
             if (!Component) return null
+            let key: string = item
+            if (key === 'split') {
+              key = `split-${index}`
+            }
             return <Component key={item} {...props} />
           }
           const Component = item.component
