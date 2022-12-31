@@ -1,5 +1,11 @@
 # react-image-previewer
 
+## 1.1.2
+
+### Patch Changes
+
+- [`51b3f61`](https://github.com/big-camel/react-image-previewer/commit/51b3f619282efd772c51b5e0cc8ad5f9bea43732) Thanks [@big-camel](https://github.com/big-camel)! - Spelling mistake
+
 ## 1.1.1
 
 ### Patch Changes
