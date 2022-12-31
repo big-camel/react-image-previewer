@@ -22,7 +22,7 @@
 - [API](https://react-image-previewer-example.vercel.app/docs/api)
 - [Change log](https://github.com/big-camel/react-image-previewer/blob/master/packages/core/CHANGELOG.md)
 
-## features
+## Features
 
 - Support touch gestures, drag and pan physical effect sliding, two-finger specified position to zoom in and out
 - All aspects of animation connection, open and close the rebound touch edge, let the natural interaction effect
@@ -48,15 +48,7 @@ import { SlideToolbar, CloseButton } from 'react-image-previewer/ui';
 
 function App() {
   return (
-    <PhotoProvider overlayRender={props => {
-        const { onClose } = props
-        return (
-          <>
-            <SlideToolbar {...props} />
-            <CloseButton onClick={onClose} />
-          </>
-        )
-      }}>
+    <PhotoProvider>
       <PhotoView src="/1.jpg">
         <img src="/1-thumbnail.jpg" alt="" />
       </PhotoView>
