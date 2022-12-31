@@ -25,7 +25,7 @@ export interface SlideItemProps extends OverlayRenderProps {
   className?: string
 }
 
-export const SildeArrowLeft: FC<SlideItemProps> = ({
+export const SlideArrowLeft: FC<SlideItemProps> = ({
   index,
   images,
   loop,
@@ -119,7 +119,7 @@ export const SlideToolbarItemDefaultComponent: Record<
   SlideToolbarKeys,
   React.FC<OverlayRenderProps>
 > = {
-  arrowLeft: SildeArrowLeft,
+  arrowLeft: SlideArrowLeft,
   arrowRight: SlideArrowRight,
   countText: SlideCountText,
   download: SlideDownload,
