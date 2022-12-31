@@ -1,5 +1,11 @@
 # react-image-previewer
 
+## 1.1.3
+
+### Patch Changes
+
+- [`2b2b6b8`](https://github.com/big-camel/react-image-previewer/commit/2b2b6b8df55cbcda65a3f49c4915acff57dc5218) Thanks [@big-camel](https://github.com/big-camel)! - feat: add children prop to toolbar item
+
 ## 1.1.2
 
 ### Patch Changes
