@@ -6,7 +6,7 @@ export interface CloseButtonProps extends React.HTMLAttributes<HTMLDivElement> {
   visible?: boolean
 }
 
-export const CloseButton: FC<CloseButtonProps> = ({ visible = true, ...props }) => {
+export const CloseButton: FC<CloseButtonProps> = ({ visible = true, children, ...props }) => {
   return (
     <div
       css={[
@@ -15,7 +15,7 @@ export const CloseButton: FC<CloseButtonProps> = ({ visible = true, ...props }) 
       ]}
       {...props}
     >
-      <CloseIcon />
+      {children ?? <CloseIcon />}
     </div>
   )
 }

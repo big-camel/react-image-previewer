@@ -23,6 +23,7 @@ export interface SlideToolbarProps extends OverlayRenderProps {
 
 export interface SlideItemProps extends OverlayRenderProps {
   className?: string
+  children?: React.ReactNode
 }
 
 export const SlideArrowLeft: FC<SlideItemProps> = ({
@@ -32,6 +33,7 @@ export const SlideArrowLeft: FC<SlideItemProps> = ({
   onIndexChange,
   overlayVisible,
   className,
+  children,
 }) => {
   const count = images.length
   const isFirst = index === 0
@@ -46,7 +48,7 @@ export const SlideArrowLeft: FC<SlideItemProps> = ({
 
   return (
     <StyledArrowLeft visible={arrowLeftVisible} onClick={prev} className={className}>
-      <ArrowLeftIcon />
+      {children ?? <ArrowLeftIcon />}
     </StyledArrowLeft>
   )
 }
@@ -58,6 +60,7 @@ export const SlideArrowRight: FC<SlideItemProps> = ({
   onIndexChange,
   overlayVisible,
   className,
+  children,
 }) => {
   const count = images.length
 
@@ -74,26 +77,32 @@ export const SlideArrowRight: FC<SlideItemProps> = ({
 
   return (
     <StyledArrowRight visible={arrowRightVisible} onClick={next} className={className}>
-      <ArrowRightIcon />
+      {children ?? <ArrowRightIcon />}
     </StyledArrowRight>
   )
 }
 
-export const SlideCountText: FC<SlideItemProps> = ({ index, images, className }) => {
+export const SlideCountText: FC<SlideItemProps> = ({ index, images, className, children }) => {
   const count = images.length
   return (
     <div
       tw="absolute bottom-5 left-2 sm:left-3 md:left-4 lg:left-5 flex justify-center items-center z-30 text-white"
       className={className}
     >
-      <label tw="px-2 py-0.5 text-lg sm:px-2.5 sm:py-1 sm:text-xl opacity-100 sm:opacity-90 md:opacity-75 hover:opacity-100 bg-gray-800/90 sm:bg-gray-800/60 md:bg-gray-800/30 disabled:cursor-not-allowed disabled:text-gray-600 rounded-md cursor-default my-0 mx-0 transition-opacity ease-linear delay-200">{`${
-        index + 1
-      }/${count}`}</label>
+      <label tw="px-2 py-0.5 text-lg sm:px-2.5 sm:py-1 sm:text-xl opacity-100 sm:opacity-90 md:opacity-75 hover:opacity-100 bg-gray-800/90 sm:bg-gray-800/60 md:bg-gray-800/30 disabled:cursor-not-allowed disabled:text-gray-600 rounded-md cursor-default my-0 mx-0 transition-opacity ease-linear delay-200">
+        {children ?? `${index + 1}/${count}`}
+      </label>
     </div>
   )
 }
 
-export const SlideDownload: FC<SlideItemProps> = ({ loading, images, index, className }) => {
+export const SlideDownload: FC<SlideItemProps> = ({
+  loading,
+  images,
+  index,
+  className,
+  children,
+}) => {
   const handleDownload = () => {
     const { src } = images[index]
     if (!src) return
@@ -109,7 +118,7 @@ export const SlideDownload: FC<SlideItemProps> = ({ loading, images, index, clas
         onClick={handleDownload}
         tw="p-2 text-lg sm:p-2.5 sm:text-xl opacity-100 sm:opacity-90 md:opacity-75 hover:opacity-100 bg-gray-800/90 sm:bg-gray-800/60 md:bg-gray-800/30  cursor-pointer disabled:cursor-not-allowed disabled:text-gray-600 disabled:hover:bg-transparent m-0 rounded-md transition-opacity ease-linear delay-200"
       >
-        <DownloadIcon />
+        {children ?? <DownloadIcon />}
       </button>
     </div>
   )

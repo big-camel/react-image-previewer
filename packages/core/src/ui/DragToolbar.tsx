@@ -59,9 +59,16 @@ const getScaleStep = (scale: number, isAdd = true) => {
 
 export interface DragItemProps extends OverlayRenderProps {
   className?: string
+  children?: React.ReactNode
 }
 
-export const DragArrowLeft: FC<DragItemProps> = ({ index, onIndexChange, images, className }) => {
+export const DragArrowLeft: FC<DragItemProps> = ({
+  index,
+  onIndexChange,
+  images,
+  className,
+  children,
+}) => {
   const count = images.length
   // 当前在第一张
   const isFirst = index === 0
@@ -71,17 +78,25 @@ export const DragArrowLeft: FC<DragItemProps> = ({ index, onIndexChange, images,
   }
   return (
     <DragStyledItem disabled={isFirst} onClick={prev} className={className}>
-      <ArrowLeftIcon />
+      {children ?? <ArrowLeftIcon />}
     </DragStyledItem>
   )
 }
 
-export const DragCountText: FC<DragItemProps> = ({ index, images, className }) => {
+export const DragCountText: FC<DragItemProps> = ({ index, images, className, children }) => {
   const count = images.length
-  return <DragStyledLabel className={className}>{`${index + 1}/${count}`}</DragStyledLabel>
+  return (
+    <DragStyledLabel className={className}>{children ?? `${index + 1}/${count}`}</DragStyledLabel>
+  )
 }
 
-export const DragArrowRight: FC<DragItemProps> = ({ index, onIndexChange, images, className }) => {
+export const DragArrowRight: FC<DragItemProps> = ({
+  index,
+  onIndexChange,
+  images,
+  className,
+  children,
+}) => {
   const count = images.length
   // 当前在最后一张
   const isLast = index === count - 1
@@ -91,7 +106,7 @@ export const DragArrowRight: FC<DragItemProps> = ({ index, onIndexChange, images
   }
   return (
     <DragStyledItem disabled={isLast} onClick={next} className={className}>
-      <ArrowRightIcon />
+      {children ?? <ArrowRightIcon />}
     </DragStyledItem>
   )
 }
@@ -100,44 +115,60 @@ export const DragSplit: FC<DragItemProps> = ({ className }) => {
   return <DragStyledSplit className={className} />
 }
 
-export const DragZoomOut: FC<DragItemProps> = ({ scale, onScale, loading, className }) => {
+export const DragZoomOut: FC<DragItemProps> = ({
+  scale,
+  onScale,
+  loading,
+  className,
+  children,
+}) => {
   const handleZoomOut = () => {
     onScale(scale - getScaleStep(scale, false))
   }
   return (
     <DragStyledItem disabled={loading} onClick={handleZoomOut} className={className}>
-      <ZoomOutIcon />
+      {children ?? <ZoomOutIcon />}
     </DragStyledItem>
   )
 }
 
-export const DragScaleCount: FC<DragItemProps> = ({ scale, className }) => {
-  return <DragStyledLabel className={className}>{`${Math.round(scale * 100)}%`}</DragStyledLabel>
+export const DragScaleCount: FC<DragItemProps> = ({ scale, className, children }) => {
+  return (
+    <DragStyledLabel className={className}>
+      {children ?? `${Math.round(scale * 100)}%`}
+    </DragStyledLabel>
+  )
 }
 
-export const DragZoomIn: FC<DragItemProps> = ({ scale, onScale, loading, className }) => {
+export const DragZoomIn: FC<DragItemProps> = ({ scale, onScale, loading, className, children }) => {
   const handleZoomIn = () => {
     onScale(scale + getScaleStep(scale))
   }
   return (
     <DragStyledItem disabled={loading} onClick={handleZoomIn} className={className}>
-      <ZoomInIcon />
+      {children ?? <ZoomInIcon />}
     </DragStyledItem>
   )
 }
 
-export const DragOneToOne: FC<DragItemProps> = ({ onScale, loading, className }) => {
+export const DragOneToOne: FC<DragItemProps> = ({ onScale, loading, className, children }) => {
   const handleOneToOne = () => {
     onScale(1)
   }
   return (
     <DragStyledItem disabled={loading} onClick={handleOneToOne} className={className}>
-      <OneToOneIcon />
+      {children ?? <OneToOneIcon />}
     </DragStyledItem>
   )
 }
 
-export const DragDownload: FC<DragItemProps> = ({ images, index, loading, className }) => {
+export const DragDownload: FC<DragItemProps> = ({
+  images,
+  index,
+  loading,
+  className,
+  children,
+}) => {
   const handleDownload = () => {
     const { src } = images[index]
     if (!src) return
@@ -145,29 +176,41 @@ export const DragDownload: FC<DragItemProps> = ({ images, index, loading, classN
   }
   return (
     <DragStyledItem disabled={loading} onClick={handleDownload} className={className}>
-      <DownloadIcon />
+      {children ?? <DownloadIcon />}
     </DragStyledItem>
   )
 }
 
-export const DragRotateLeft: FC<DragItemProps> = ({ rotate, onRotate, loading, className }) => {
+export const DragRotateLeft: FC<DragItemProps> = ({
+  rotate,
+  onRotate,
+  loading,
+  className,
+  children,
+}) => {
   const handleRotateLeft = () => {
     onRotate(rotate - 90)
   }
   return (
     <DragStyledItem disabled={loading} onClick={handleRotateLeft} className={className}>
-      <RotateLeftIcon />
+      {children ?? <RotateLeftIcon />}
     </DragStyledItem>
   )
 }
 
-export const DragRotateRight: FC<DragItemProps> = ({ rotate, onRotate, loading, className }) => {
+export const DragRotateRight: FC<DragItemProps> = ({
+  rotate,
+  onRotate,
+  loading,
+  className,
+  children,
+}) => {
   const handleRotateRight = () => {
     onRotate(rotate + 90)
   }
   return (
     <DragStyledItem disabled={loading} onClick={handleRotateRight} className={className}>
-      <RotateRightIcon />
+      {children ?? <RotateRightIcon />}
     </DragStyledItem>
   )
 }
