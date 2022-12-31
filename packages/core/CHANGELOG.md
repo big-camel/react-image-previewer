@@ -1,5 +1,11 @@
 # react-image-previewer
 
+## 1.1.6
+
+### Patch Changes
+
+- [`172d7d7`](https://github.com/big-camel/react-image-previewer/commit/172d7d7f0ab3bf824fc363326723cfa33a0a13bd) Thanks [@big-camel](https://github.com/big-camel)! - fix: init scale & loading state
+
 ## 1.1.5
 
 ### Patch Changes
