@@ -1,5 +1,11 @@
 # react-image-previewer
 
+## 1.1.4
+
+### Patch Changes
+
+- [`36112fe`](https://github.com/big-camel/react-image-previewer/commit/36112febe435c3403dc326a701cc5a2cdc34e5f6) Thanks [@big-camel](https://github.com/big-camel)! - fix: with the same key, `split`.
+
 ## 1.1.3
 
 ### Patch Changes
