@@ -520,12 +520,24 @@ import { DragToolbar, CloseButton } from 'react-image-previewer/ui'
 除了使用 `key` 来设置按钮类型，还可以自由配置工具栏按钮对象，或者覆盖默认内置按钮组件
 
 ```jsx
-import { DragStyledItem, DragStyledLabel } from 'react-image-previewer/ui'
+import { DragStyledItem, DragStyledLabel, DragDownload, DragScaleCount } from 'react-image-previewer/ui'
 
 <DragToolbar {...props} items={
   [
     'arrowLeft', 'countText', 'arrowRight',
     'split',
+    {
+      key: 'download',
+      component: props => {
+        return <Tooltip><DragDownload {...props} /></Tooltip>
+      }
+    },
+    {
+      key: '',
+      component: props => {
+        return <DragScaleCount {...props} />{ 100 * props.scale }</DragScaleCount>
+      }
+    },
     {
       key: 'dog',
       component: ({ index }) => {
