@@ -269,7 +269,7 @@ export const DragToolbar: FC<DragToolbarProps> = ({
             if (key === 'split') {
               key = `split-${index}`
             }
-            return <Component key={item} {...props} />
+            return <Component key={key} {...props} />
           }
           const Component = item.component
           return <Component key={item.key} {...props} />
