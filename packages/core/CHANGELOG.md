@@ -1,5 +1,11 @@
 # react-image-previewer
 
+## 1.1.5
+
+### Patch Changes
+
+- [`a9c90f1`](https://github.com/big-camel/react-image-previewer/commit/a9c90f1997f84381d89f69181bc56c8ecf1cb31b) Thanks [@big-camel](https://github.com/big-camel)! - fix: toolbar key same
+
 ## 1.1.4
 
 ### Patch Changes
