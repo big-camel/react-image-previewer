@@ -13,7 +13,7 @@
 [![Minified size][min-size-image]][bundlephobia-url]
 [![Gzip size][gzip-size-image]][bundlephobia-url]
 
-![example](./example.gif)
+![example](./.github/example.gif)
 
 ## 快速开始
 
