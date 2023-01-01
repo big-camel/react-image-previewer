@@ -457,7 +457,7 @@ import { SlideToolbar } from 'react-image-previewer/ui'
 <SlideToolbar {...props} items={[ 'arrowLeft', 'countText', 'arrowRight', 'download']} />
 ```
 
-除了通过 `key` 来使用他们外，您可以通过 `children` 来修改他们的样式或者包裹外部组件。此时设置 `items` 将失效
+除了通过 `key` 来使用他们外，您可以使用单独的按钮。
 
 ```jsx
 import { SlideArrowLeft, SlideArrowRight, SlideCountText, SlideDownload } from 'react-image-previewer/ui'
@@ -533,7 +533,7 @@ import { DragStyledItem, DragStyledLabel, DragDownload, DragScaleCount } from 'r
       }
     },
     {
-      key: '',
+      key: 'scaleText',
       component: props => {
         return <DragScaleCount {...props} />{ 100 * props.scale }</DragScaleCount>
       }

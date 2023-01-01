@@ -457,7 +457,7 @@ import { SlideToolbar } from 'react-image-previewer/ui'
 <SlideToolbar {...props} items={[ 'arrowLeft', 'countText', 'arrowRight', 'download']} />
 ```
 
-In addition to using them via `key`, you can modify their styles or wrap external components via `children`. Setting `items` will be invalid at this time
+Instead of using them via `key`, you can use individual buttons.
 
 ```jsx
 import { SlideArrowLeft, SlideArrowRight, SlideCountText, SlideDownload } from 'react-image-previewer/ui'
@@ -533,7 +533,7 @@ import { DragStyledItem, DragStyledLabel, DragDownload, DragScaleCount } from 'r
       }
      },
      {
-      key: '',
+      key: 'countText',
       component: props => {
         return <DragScaleCount {...props} />{ 100 * props.scale }</DragScaleCount>
       }
